@@ -28,6 +28,10 @@ ul {
     list-style-type: square;
 }
 
+ul li {
+    margin-bottom: 10px;
+}
+
 .idea {
     margin-bottom: 20px;
 }

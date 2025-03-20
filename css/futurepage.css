@@ -12,6 +12,10 @@ a {
     color: #007BFF;
 }
 
+img {
+    border-radius: 10px;
+}
+
 a:hover {
     text-decoration: underline;
 }

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI 計算器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+
+        a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h3 {
+            color: #333;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        img {
+            border-radius: 10px;
+        }
+
+        h4 {
+            margin-top: 30px;
+            color: #555;
+        }
+
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html">首頁</a>
+    <a href="about.html">
+        <img src="img/sayaka0009.png" alt="關於我" width="30px" height="30px">
+        關於我
+    </a></a>
+    <a href="future.html">未來志向</a>
+    <a href="homework.html">作業</a>
+    <h1>BMI 計算器</h1>
+    <form id="bmiForm">
+        <label for="weight">體重 (公斤):</label>
+        <input type="number" id="weight" required>
+        <br><br>
+        <label for="height">身高 (公分):</label>
+        <input type="number" id="height" required>
+        <br><br>
+        <br><br>
+        <button type="button" onclick="calculateBMI()">計算 BMI</button>
+    </form>
+    <h2 id="result"></h2>
+    <table>
+        <thead>
+            <tr>
+                <th>BMI 範圍</th>
+                <th>分類</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>小於 18.5</td>
+                <td>體重過輕</td>
+            </tr>
+            <tr>
+                <td>18.5 - 24.9</td>
+                <td>正常體重</td>
+            </tr>
+            <tr>
+                <td>25 - 29.9</td>
+                <td>體重過重</td>
+            </tr>
+            <tr>
+                <td>30 以上</td>
+                <td>肥胖</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        function calculateBMI() {
+            const weight = parseFloat(document.getElementById('weight').value);
+            const heightInCm = parseFloat(document.getElementById('height').value);
+
+            if (weight > 0 && heightInCm > 0) {
+                const heightInMeters = heightInCm / 100; // Convert height from cm to meters
+                const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(2);
+                let category = '';
+
+                if (bmi < 18.5) {
+                    category = '體重過輕';
+                } else if (bmi >= 18.5 && bmi <= 24.9) {
+                    category = '正常體重';
+                } else if (bmi >= 25 && bmi <= 29.9) {
+                    category = '體重過重';
+                } else {
+                    category = '肥胖';
+                }
+
+                document.getElementById('result').textContent = `您的 BMI 是 ${bmi} (${category})。`;
+            } else {
+                document.getElementById('result').textContent = '請輸入有效的體重和身高。';
+            }
+        }
+    </script>
+</body>
+</html>

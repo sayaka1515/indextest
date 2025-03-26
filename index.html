@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
+    <!-- 漢堡圖標 -->
+    <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+    
+    <!-- 側拉選單 -->
+    <div class="sidebar" id="sidebar">
+        <a href="javascript:void(0)" class="close-btn" onclick="toggleMenu()">&times;</a>
+        <h3>選單</h3>
+        <a href="index.html">首頁</a>
+        <a href="about.html">關於我</a>
+        <a href="future.html">未來志向</a>
+        <a href="homework.html">作業</a>
+    </div>
+    
     <header>
         <h1>歡迎來到我的個人網站</h1>
     </header>
@@ -24,5 +37,12 @@
     <footer>
         <p style="margin-top: 20px;">&copy; 2025 我的個人網站</p>
     </footer>
+    
+    <script>
+        function toggleMenu() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>

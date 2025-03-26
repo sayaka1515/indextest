@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Water Puzzle</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Water Puzzle</title>
     <link rel="stylesheet" href="css/wppage.css">
+    <script src="waterpuzzle.js"></script>
 </head>
 <body>
-    <a href="homework.html">返回作業選擇</a>
     <h1>2025 Water Puzzle Game</h1>
-    <div id="game-info">
+    <div id="game-info" class="game-area">
         <p>移動次數：</p>
     </div>
-    <div id="controls">
+    <div id="controls" class="game-area">
         <label for="level-select">選擇關卡</label>
         <select id="level-select">
             <option value="1">Level 1</option>
@@ -26,6 +26,10 @@
             <option value="9">Level 9</option>
             <option value="10">Level 10</option>
         </select>
+        <button id ="play-button">PLAY</button>
+    </div>
+    <div id="game-container" class="game-area">
+
     </div>
 </body>
 </html>

@@ -10,3 +10,19 @@ body{
     border-radius: 20px;
     margin: 50px;
 }
+.game-area{
+    width: 80%;
+    border-radius: 10px;
+    padding:20px;
+    margin: 5px;
+}
+#game-info{
+    background-color:burlywood;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#controls{
+    background-color:darkgrey;
+}
+#game-container{
+    background-color:gainsboro;
+}

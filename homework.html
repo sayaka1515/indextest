@@ -4,27 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Javascript作業</title>
+    <title>作業選擇</title>
     <link rel="stylesheet" href="css/hwpage.css">
-    <script>
-        function myFunction() {
-            var n = document.getElementById('numberInput').value;
-            // alert("輸入的數值是: " + n);
-
-            var str="<table>";
-
-            for (let i = 1; i <= n; i++) {
-                str+="<tr>";
-                for (let j = 1; j <= n; j++) {
-                    str+=`<td> ${i} * ${j} = ${i*j}</td>`;
-                }
-                str+="</tr>";
-            }
-            str+="</table>";
-
-            document.getElementById("myId").innerHTML = str;
-        }
-    </script>
 </head>
 
 <body>
@@ -32,14 +13,14 @@
     <a href="about.html">
         <img src="img/sayaka0009.png" alt="關於我" width="30px" height="30px">
         關於我
-    </a></a>
+    </a>
     <a href="future.html">未來志向</a>
     <a href="homework.html">作業</a>
-    <h1>N*N乘法表</h1>
-    <label for="numberInput">輸入一個數值:</label>
-    <input type="number" id="numberInput" placeholder="輸入一個數值" />
-    <input type="button" value="OK" title="OK" onclick="myFunction()" />
-    <div id="myId"></div>
+    <h1>選擇作業</h1>
+    <ul>
+        <li><a href="nxn.html">N*N 乘法表</a></li>
+        <li><a href="WaterPuzzle.html">Water Puzzle</a></li>
+    </ul>
 </body>
 
 </html>

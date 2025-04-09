@@ -29,14 +29,25 @@ body{
 
 #game-container{
     background-color:gainsboro;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 
-a {
-    margin-right: 15px;
-    text-decoration: none;
-    color: #007BFF;
+.tube{
+    width: 50px;
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 0 0  10px 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: hidden;
+    margin-top: 20px;
+    border-top: nones;
 }
 
-a:hover {
-    text-decoration: underline;
+.water{
+    width: 100%;
 }

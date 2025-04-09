@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    overflow-x: hidden; /* 防止滑出選單時出現水平滾動條 */
+}
+
+/* 漢堡圖標 */
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    color: #fff;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* 側拉選單 */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%; /* 完全隱藏 */
+    width: 250px;
+    height: 100%;
+    background: #333;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease; /* 平滑滑出效果 */
+}
+
+.sidebar.active {
+    left: 0; /* 滑出選單 */
+}
+
+.sidebar .close-btn {
+    font-size: 30px;
+    color: #fff;
+    text-decoration: none;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.sidebar h3 {
+    margin-top: 50px;
+    text-align: center;
+    color: gold;
+}
+
+.sidebar a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    margin: 10px 0;
+    padding: 10px;
+    background: darkblue;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.sidebar a:hover {
+    background: #555;
+}
+
+header {
+    padding: 10px 20px;
+    text-align: center;
+    background: #333;
+    color: #fff;
+}
+
+nav {
+    text-align: center;
+    margin: 20px 0;
+}
+nav a {
+    color: white;
+    background-color: darkblue;
+    text-decoration: none;
+    padding: 10px 15px;
+    border: 1px solid gold;
+    margin: 0 5px;
+    display: inline-block;
+}
+nav a:link {
+    color: red;
+}
+
+main {
+    padding: 20px;
+    background: #fff;
+    margin-top: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    text-align: center;
+    padding: 10px 20px;
+    background: #333;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+/* 頭像樣式 */
+header .profile-img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px; /* 設定頭像大小 */
+    height: 50px;
+    border-radius: 50%; /* 設置為圓形 */
+    border: 2px solid #fff; /* 添加白色邊框 */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* 添加陰影效果 */
+}

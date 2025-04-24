@@ -31,8 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const tubes = [];
   let selectedTube = null;
   let levelCount = 1;
+  let isFullCompletionMode = true; // 判定是否是從第一關慢慢通關
 
   function chooseLevel(level) {
+    if (level !== levelCount + 1) {
+      isFullCompletionMode = false; // 如果跳關，則不再是完整通關模式
+    }
     levelCount = level;
     document.getElementById("level-count").textContent = levelCount;
   }
@@ -66,7 +70,21 @@ document.addEventListener("DOMContentLoaded", () => {
     if (
       tubes.every((tube) => tube.childElementCount === 0 || allSameColor(tube))
     ) {
-      alert("你已經完成本關卡!");
+      if (levelCount === 10) {
+        if (isFullCompletionMode) {
+          alert("您已經全部通關，恭喜！");
+        } else {
+          alert("你已經完成本關卡!");
+        }
+      } else {
+        alert("你已經完成本關卡!");
+        levelCount++;
+        document.getElementById("level-count").textContent = levelCount;
+        document.getElementById("completed-tubes-count").textContent = 0;
+        chooseLevel(levelCount);
+        createTubes();
+        fillTubes();
+      }
     }
   }
 
@@ -162,6 +180,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function saveGame() {
     const gameState = {
       levelCount: parseInt(levelSelect.value, 10), // 存取當前選擇的關卡
+      isFullCompletionMode, // 存取是否是完整通關模式
       tubes: tubes.map((tube) => {
         return Array.from(tube.children).map(
           (water) => water.style.backgroundColor
@@ -190,6 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const gameState = JSON.parse(e.target.result);
 
         levelCount = gameState.levelCount;
+        isFullCompletionMode = gameState.isFullCompletionMode || false; // 還原完整通關模式
         levelSelect.value = levelCount; // 更新選擇的關卡
         document.getElementById("level-count").textContent = levelCount;
 

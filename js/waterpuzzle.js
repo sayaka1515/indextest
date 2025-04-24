@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function saveGame() {
     const gameState = {
-      levelCount: parseInt(levelSelect.value, 10), // 存取當前選擇的關卡
+      levelCount: parseInt(document.getElementById("level-count").textContent, 10), // 存取當前顯示的關卡
       isFullCompletionMode, // 存取是否是完整通關模式
       tubes: tubes.map((tube) => {
         return Array.from(tube.children).map(

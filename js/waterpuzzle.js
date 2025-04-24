@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const gameContainer = document.getElementById("game-container");
   const playButton = document.getElementById("play-button");
+  const saveButton = document.getElementById("save-button");
   const levelSelect = document.getElementById("level-select");
 
   const colors = [
@@ -60,11 +61,20 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("completed-tubes-count").textContent =
       completedTubes;
 
-    //檢查是否所有的試管都完成或者是空試管
     if (
       tubes.every((tube) => tube.childElementCount === 0 || allSameColor(tube))
     ) {
-      alert("你已經完成本關卡");
+      if (levelCount === 10) {
+        alert("恭喜!你已經完成所有挑戰!!");
+      } else {
+        alert("你已經完成本關卡!");
+        levelCount++;
+        document.getElementById("level-count").textContent = levelCount;
+        document.getElementById("completed-tubes-count").textContent = 0;
+        chooseLevel(levelCount);
+        createTubes();
+        fillTubes();
+      }
     }
   }
 
@@ -121,7 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
       tubes.push(tube);
     }
 
-    //新增兩管空的試管來當作緩衝使用
     for (let i = 0; i < 2; i++) {
       const emptyTube = document.createElement("div");
       emptyTube.classList.add("tube");
@@ -132,21 +141,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function fillTubes() {
-    // 填滿試管顏色
     const gameColors = colors.slice(0, Math.min(levelCount + 1, colors.length));
     const waterBlocks = [];
 
-    // 對於每一種顏色，產生4個block
     gameColors.forEach((color) => {
       for (let i = 0; i < 4; i++) {
         waterBlocks.push(color);
       }
     });
 
-    //將顏色打亂
     waterBlocks.sort(() => 0.5 - Math.random());
 
-    //將waterBlock分散在不同的試管內
     let blockIndex = 0;
     tubes.slice(0, levelCount + 1).forEach((tube) => {
       for (let i = 0; i < 4; i++) {
@@ -162,9 +167,42 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function saveGame() {
+    const gameState = {
+      levelCount,
+      tubes: tubes.map((tube) => {
+        return Array.from(tube.children).map(
+          (water) => water.style.backgroundColor
+        );
+      }),
+    };
+
+    const json = JSON.stringify(gameState, null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+
+    let fileIndex = 1;
+    let fileName = `waterpz${String(fileIndex).padStart(2, "0")}.json`;
+
+    while (window.localStorage.getItem(fileName)) {
+      fileIndex++;
+      fileName = `waterpz${String(fileIndex).padStart(2, "0")}.json`;
+    }
+
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    window.localStorage.setItem(fileName, "saved");
+  }
+
   playButton.addEventListener("click", () => {
     tubes.length = 0;
     createTubes();
     fillTubes();
   });
+
+  saveButton.addEventListener("click", saveGame);
 });

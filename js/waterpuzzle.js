@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (error) {
         alert("讀取檔案失敗，請確認檔案格式正確！");
       }
-    };
+    }; 
 
     reader.readAsText(file);
   }

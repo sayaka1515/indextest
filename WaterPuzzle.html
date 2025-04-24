@@ -29,10 +29,12 @@
             <option value="9">Level 9</option>
             <option value="10">Level 10</option>
         </select>
-        <button id ="play-button">PLAY</button>
+        <button id="play-button">PLAY</button>
         <button id="save-button">存檔</button>
+        <button id="load-button">讀取檔案</button>
+        <label for="file-input" class="hidden-label">選擇存檔檔案</label>
+        <input type="file" id="file-input" accept=".json" class="hidden-input" title="選擇存檔檔案">
     </div>
-    <div id="game-container" class="game-area">
-    </div>
+    <div id="game-container" class="game-area"></div>
 </body>
 </html>

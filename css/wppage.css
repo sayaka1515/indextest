@@ -1,5 +1,5 @@
-body{
-    background-color:antiquewhite;
+body {
+    background-color: antiquewhite;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
@@ -11,36 +11,36 @@ body{
     margin: 50px;
 }
 
-.game-area{
+.game-area {
     width: 80%;
     border-radius: 10px;
-    padding:20px;
+    padding: 20px;
     margin: 5px;
 }
 
-#game-info{
-    background-color:burlywood;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+#game-info {
+    background-color: burlywood;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-#controls{
-    background-color:darkgrey;
+#controls {
+    background-color: darkgrey;
 }
 
-#game-container{
-    background-color:gainsboro;
+#game-container {
+    background-color: gainsboro;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 20px;
 }
 
-.tube{
+.tube {
     width: 50px;
     height: 200px;
     border: 2px solid black;
     border-top: 0px;
-    border-radius: 0 0  10px 10px;
+    border-radius: 0 0 10px 10px;
     margin: 10px;
     display: flex;
     flex-direction: column-reverse;
@@ -48,12 +48,21 @@ body{
     margin-top: 20px;
 }
 
-.water{
+.water {
     width: 100%;
 }
 
-.tube.selected{
-    border-color: 'red';
+.tube.selected {
+    border-color: red;
     box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
     transform: translateY(-20px);
+}
+
+.hidden-input {
+    display: none;
+}
+.hidden-label {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
 }

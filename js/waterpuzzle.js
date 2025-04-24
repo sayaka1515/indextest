@@ -2,7 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const gameContainer = document.getElementById("game-container");
   const playButton = document.getElementById("play-button");
   const saveButton = document.getElementById("save-button");
-  const levelSelect = document.getElementById("level-select");
+  const loadButton = document.getElementById("load-button");
+  const fileInput = document.getElementById("file-input");
 
   const colors = [
     "red",
@@ -34,11 +35,6 @@ document.addEventListener("DOMContentLoaded", () => {
     levelCount = level;
     document.getElementById("level-count").textContent = levelCount;
   }
-
-  levelSelect.addEventListener("change", (event) => {
-    const selectedLevel = parseInt(event.target.value, 10);
-    chooseLevel(selectedLevel);
-  });
 
   function checkGameState() {
     const allSameColor = (tube) => {
@@ -198,6 +194,57 @@ document.addEventListener("DOMContentLoaded", () => {
     window.localStorage.setItem(fileName, "saved");
   }
 
+  function loadGame(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        const gameState = JSON.parse(e.target.result);
+
+        // 還原遊戲進度
+        levelCount = gameState.levelCount;
+        document.getElementById("level-count").textContent = levelCount;
+
+        tubes.length = 0;
+        gameContainer.innerHTML = "";
+
+        gameState.tubes.forEach((tubeColors) => {
+          const tube = document.createElement("div");
+          tube.classList.add("tube");
+          tube.addEventListener("click", () => selectTube(tube));
+
+          tubeColors.forEach((color) => {
+            const water = document.createElement("div");
+            water.classList.add("water");
+            water.style.backgroundColor = color;
+            water.style.height = "20%";
+            tube.appendChild(water);
+          });
+
+          gameContainer.appendChild(tube);
+          tubes.push(tube);
+        });
+
+        // 添加兩個空試管
+        for (let i = 0; i < 2; i++) {
+          const emptyTube = document.createElement("div");
+          emptyTube.classList.add("tube");
+          emptyTube.addEventListener("click", () => selectTube(emptyTube));
+          gameContainer.appendChild(emptyTube);
+          tubes.push(emptyTube);
+        }
+
+        document.getElementById("completed-tubes-count").textContent = 0;
+      } catch (error) {
+        alert("讀取檔案失敗，請確認檔案格式正確！");
+      }
+    };
+
+    reader.readAsText(file);
+  }
+
   playButton.addEventListener("click", () => {
     tubes.length = 0;
     createTubes();
@@ -205,4 +252,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   saveButton.addEventListener("click", saveGame);
+  loadButton.addEventListener("click", () => fileInput.click());
+  fileInput.addEventListener("change", loadGame);
 });

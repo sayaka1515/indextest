@@ -197,24 +197,25 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadGame(event) {
     const file = event.target.files[0];
     if (!file) return;
-
+  
     const reader = new FileReader();
     reader.onload = (e) => {
       try {
         const gameState = JSON.parse(e.target.result);
-
+  
         // 還原遊戲進度
         levelCount = gameState.levelCount;
         document.getElementById("level-count").textContent = levelCount;
-
+  
         tubes.length = 0;
         gameContainer.innerHTML = "";
-
+  
+        // 根據存檔中的試管數量還原試管
         gameState.tubes.forEach((tubeColors) => {
           const tube = document.createElement("div");
           tube.classList.add("tube");
           tube.addEventListener("click", () => selectTube(tube));
-
+  
           tubeColors.forEach((color) => {
             const water = document.createElement("div");
             water.classList.add("water");
@@ -222,26 +223,18 @@ document.addEventListener("DOMContentLoaded", () => {
             water.style.height = "20%";
             tube.appendChild(water);
           });
-
+  
           gameContainer.appendChild(tube);
           tubes.push(tube);
         });
-
-        // 添加兩個空試管
-        for (let i = 0; i < 2; i++) {
-          const emptyTube = document.createElement("div");
-          emptyTube.classList.add("tube");
-          emptyTube.addEventListener("click", () => selectTube(emptyTube));
-          gameContainer.appendChild(emptyTube);
-          tubes.push(emptyTube);
-        }
-
+  
+        // 確保試管數量與存檔一致，不額外添加空試管
         document.getElementById("completed-tubes-count").textContent = 0;
       } catch (error) {
         alert("讀取檔案失敗，請確認檔案格式正確！");
       }
     };
-
+  
     reader.readAsText(file);
   }
 

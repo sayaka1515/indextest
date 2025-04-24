@@ -66,17 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (
       tubes.every((tube) => tube.childElementCount === 0 || allSameColor(tube))
     ) {
-      if (levelCount === 10) {
-        alert("恭喜!你已經完成所有挑戰!!");
-      } else {
-        alert("你已經完成本關卡!");
-        levelCount++;
-        document.getElementById("level-count").textContent = levelCount;
-        document.getElementById("completed-tubes-count").textContent = 0;
-        chooseLevel(levelCount);
-        createTubes();
-        fillTubes();
-      }
+      alert("你已經完成本關卡!");
     }
   }
 
@@ -171,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function saveGame() {
     const gameState = {
-      levelCount,
+      levelCount: parseInt(levelSelect.value, 10), // 存取當前選擇的關卡
       tubes: tubes.map((tube) => {
         return Array.from(tube.children).map(
           (water) => water.style.backgroundColor
@@ -200,6 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const gameState = JSON.parse(e.target.result);
 
         levelCount = gameState.levelCount;
+        levelSelect.value = levelCount; // 更新選擇的關卡
         document.getElementById("level-count").textContent = levelCount;
 
         tubes.length = 0;
@@ -226,7 +217,7 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (error) {
         alert("讀取檔案失敗，請確認檔案格式正確！");
       }
-    }; 
+    };
 
     reader.readAsText(file);
   }

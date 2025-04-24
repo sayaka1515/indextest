@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const saveButton = document.getElementById("save-button");
   const loadButton = document.getElementById("load-button");
   const fileInput = document.getElementById("file-input");
+  const levelSelect = document.getElementById("level-select");
 
   const colors = [
     "red",
@@ -35,6 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
     levelCount = level;
     document.getElementById("level-count").textContent = levelCount;
   }
+
+  levelSelect.addEventListener("change", (event) => {
+    const selectedLevel = parseInt(event.target.value, 10);
+    chooseLevel(selectedLevel);
+  });
 
   function checkGameState() {
     const allSameColor = (tube) => {
@@ -176,46 +182,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const json = JSON.stringify(gameState, null, 2);
     const blob = new Blob([json], { type: "application/json" });
 
-    let fileIndex = 1;
-    let fileName = `waterpz${String(fileIndex).padStart(2, "0")}.json`;
-
-    while (window.localStorage.getItem(fileName)) {
-      fileIndex++;
-      fileName = `waterpz${String(fileIndex).padStart(2, "0")}.json`;
-    }
-
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = fileName;
+    a.download = `waterpz${String(levelCount).padStart(2, "0")}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-
-    window.localStorage.setItem(fileName, "saved");
   }
 
   function loadGame(event) {
     const file = event.target.files[0];
     if (!file) return;
-  
+
     const reader = new FileReader();
     reader.onload = (e) => {
       try {
         const gameState = JSON.parse(e.target.result);
-  
-        // 還原遊戲進度
+
         levelCount = gameState.levelCount;
         document.getElementById("level-count").textContent = levelCount;
-  
+
         tubes.length = 0;
         gameContainer.innerHTML = "";
-  
-        // 根據存檔中的試管數量還原試管
+
         gameState.tubes.forEach((tubeColors) => {
           const tube = document.createElement("div");
           tube.classList.add("tube");
           tube.addEventListener("click", () => selectTube(tube));
-  
+
           tubeColors.forEach((color) => {
             const water = document.createElement("div");
             water.classList.add("water");
@@ -223,18 +217,17 @@ document.addEventListener("DOMContentLoaded", () => {
             water.style.height = "20%";
             tube.appendChild(water);
           });
-  
+
           gameContainer.appendChild(tube);
           tubes.push(tube);
         });
-  
-        // 確保試管數量與存檔一致，不額外添加空試管
+
         document.getElementById("completed-tubes-count").textContent = 0;
       } catch (error) {
         alert("讀取檔案失敗，請確認檔案格式正確！");
       }
     };
-  
+
     reader.readAsText(file);
   }
 

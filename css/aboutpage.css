@@ -1,0 +1,136 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    background: #f4f4f4;
+}
+
+.top-nav {
+    background: #333;
+    padding: 10px 0;
+    text-align: center;
+}
+.top-nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 12px;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: color 0.2s;
+}
+.top-nav a:hover {
+    color: gold;
+}
+
+.about-container {
+    background: #fff;
+    max-width: 700px;
+    margin: 40px auto 30px auto;
+    border-radius: 18px;
+    box-shadow: 0 4px 24px rgba(30,60,114,0.10);
+    padding: 32px 40px 32px 40px;
+}
+.about-header {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 18px;
+}
+.about-header img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #1e3c72;
+    box-shadow: 0 2px 8px rgba(30,60,114,0.10);
+}
+.about-header h3 {
+    margin: 0;
+    font-size: 2em;
+    color: #1e3c72;
+}
+.about-info {
+    margin-bottom: 18px;
+}
+.about-info ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.about-info li {
+    margin-bottom: 8px;
+    font-size: 1.1em;
+}
+.about-edu {
+    margin-bottom: 18px;
+}
+.about-edu h4 {
+    color: #2a5298;
+    margin-bottom: 8px;
+}
+.about-edu ul {
+    padding-left: 18px;
+}
+.social-links {
+    margin-top: 18px;
+}
+.social-links a {
+    display: inline-block;
+    margin-right: 16px;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(30,60,114,0.08);
+}
+.social-links a:hover {
+    background: linear-gradient(90deg, #2a5298 0%, #1e3c72 100%);
+    color: gold;
+    transform: translateY(-2px) scale(1.05);
+}
+@media (max-width: 600px) {
+    .about-container {
+        padding: 18px 8px;
+    }
+    .about-header {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+.about-flex {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 32px;
+}
+.about-main {
+    flex: 2;
+    min-width: 0;
+    position: relative;
+}
+
+.about-img-bottom-right {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 100%;
+    padding: 0 10px 0px 0;
+    box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+    .about-main {
+        position: static;
+    }
+    .about-img-bottom-right {
+        position: static;
+        justify-content: center;
+        padding: 20px 0 0 0;
+    }
+}

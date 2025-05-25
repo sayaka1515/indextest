@@ -1,0 +1,138 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    overflow-x: hidden; /* 防止滑出選單時出現水平滾動條 */
+}
+
+/* 漢堡圖標 */
+.menu-icon {
+    font-size: 30px;
+    cursor: pointer;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    color: #fff;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* 側拉選單 */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%; /* 完全隱藏 */
+    width: 250px;
+    height: 100%;
+    background: #333;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease; /* 平滑滑出效果 */
+}
+
+.sidebar.active {
+    left: 0; /* 滑出選單 */
+}
+
+/*
+.sidebar .close-btn {
+    font-size: 30px;
+    color: #fff;
+    text-decoration: none;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+*/
+
+.sidebar h3 {
+    margin-top: 50px;
+    text-align: center;
+    color: gold;
+}
+
+.sidebar a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    margin: 10px 0;
+    padding: 10px;
+    background: darkblue;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.sidebar a:hover {
+    background: #555;
+}
+
+header {
+    padding: 10px 20px;
+    text-align: center;
+    background: #333;
+    color: #fff;
+}
+
+/* 美化主導覽列 */
+nav {
+    text-align: center;
+    margin: 30px 0 20px 0;
+}
+
+nav a {
+    color: #fff;
+    background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%);
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 25px;
+    margin: 0 10px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.1em;
+    box-shadow: 0 2px 8px rgba(30,60,114,0.08);
+    border: none;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+}
+
+nav a:hover {
+    background: linear-gradient(90deg, #2a5298 0%, #1e3c72 100%);
+    color: gold;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 16px rgba(30,60,114,0.15);
+}
+
+main {
+    padding: 20px;
+    background: #fff;
+    margin-top: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    text-align: center;
+    padding: 10px 20px;
+    background: #333;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+/* 頭像樣式 */
+header .profile-img {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 50px; /* 設定頭像大小 */
+    height: 50px;
+    border-radius: 50%; /* 設置為圓形 */
+    border: 2px solid #fff; /* 添加白色邊框 */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* 添加陰影效果 */
+}

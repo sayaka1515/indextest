@@ -111,17 +111,11 @@ body {
     min-width: 0;
     position: relative;
 }
-
 .about-img-bottom-right {
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    flex: 1;
     display: flex;
-    justify-content: flex-end;
     align-items: flex-end;
-    width: 100%;
-    padding: 0 10px 0px 0;
-    box-sizing: border-box;
+    justify-content: flex-end;
 }
 
 @media (max-width: 900px) {
